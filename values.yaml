@@ -25,8 +25,8 @@ expose:
     commonName: ""
   ingress:
     hosts:
-      core: core.harbor.domain
-      notary: notary.harbor.domain
+      core: harbor.sl
+      notary: harbor.sl
     # set to the type of ingress controller if it has specific requirements.
     # leave as `default` for most ingress controllers.
     # set to `gce` if using the GCE ingress controller
@@ -110,40 +110,40 @@ persistence:
     registry:
       # Use the existing PVC which must be created manually before bound, 
       # and specify the "subPath" if the PVC is shared with other components
-      existingClaim: ""
+      existingClaim: "harbor"
       # Specify the "storageClass" used to provision the volume. Or the default
       # StorageClass will be used(the default).
       # Set it to "-" to disable dynamic provisioning
       storageClass: ""
-      subPath: ""
+      subPath: "registry"
       accessMode: ReadWriteOnce
       size: 5Gi
     chartmuseum:
-      existingClaim: ""
+      existingClaim: "harbor"
       storageClass: ""
-      subPath: ""
+      subPath: "chartmuseum"
       accessMode: ReadWriteOnce
       size: 5Gi
     jobservice:
-      existingClaim: ""
+      existingClaim: "harbor"
       storageClass: ""
-      subPath: ""
+      subPath: "jobservice"
       accessMode: ReadWriteOnce
       size: 1Gi
     # If external database is used, the following settings for database will 
     # be ignored
     database:
-      existingClaim: ""
+      existingClaim: "harbor"
       storageClass: ""
-      subPath: ""
+      subPath: "database"
       accessMode: ReadWriteOnce
       size: 1Gi
     # If external Redis is used, the following settings for Redis will 
     # be ignored
     redis:
-      existingClaim: ""
+      existingClaim: "harbor"
       storageClass: ""
-      subPath: ""
+      subPath: "redis"
       accessMode: ReadWriteOnce
       size: 1Gi
   # Define which storage backend is used for registry and chartmuseum to store
