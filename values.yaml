@@ -2,13 +2,13 @@ expose:
   # Set the way how to expose the service. Set the type as "ingress", 
   # "clusterIP" or "nodePort" and fill the information in the corresponding 
   # section
-  type: ingress
+  type: nodePort
   tls:
     # Enable the tls or not. Note: if the type is "ingress" and the tls 
     # is disabled, the port must be included in the command when pull/push
     # images. Refer to https://github.com/goharbor/harbor/issues/5291 
     # for the detail.
-    enabled: true
+    enabled: false
     # Fill the name of secret if you want to use your own TLS certificate
     # and private key. The secret must contain keys named tls.crt and 
     # tls.key that contain the certificate and private key to use for TLS
@@ -93,40 +93,40 @@ persistence:
   persistentVolumeClaim:
     registry:
       # Use the existing PVC which must be created manually before bound
-      existingClaim: ""
+      existingClaim: "harbor/harbor"
       # Specify the "storageClass" used to provision the volume. Or the default
       # StorageClass will be used(the default).
       # Set it to "-" to disable dynamic provisioning
       storageClass: ""
-      subPath: ""
+      subPath: "registry"
       accessMode: ReadWriteOnce
       size: 5Gi
     chartmuseum:
-      existingClaim: ""
+      existingClaim: "harbor/harbor"
       storageClass: ""
-      subPath: ""
+      subPath: "chartmuseum"
       accessMode: ReadWriteOnce
       size: 5Gi
     jobservice:
-      existingClaim: ""
+      existingClaim: "harbor/harbor"
       storageClass: ""
-      subPath: ""
+      subPath: "jobservice"
       accessMode: ReadWriteOnce
       size: 1Gi
     # If external database is used, the following settings for database will 
     # be ignored
     database:
-      existingClaim: ""
+      existingClaim: "harbor/harbor"
       storageClass: ""
-      subPath: ""
+      subPath: "database"
       accessMode: ReadWriteOnce
       size: 1Gi
     # If external Redis is used, the following settings for Redis will 
     # be ignored
     redis:
-      existingClaim: ""
+      existingClaim: "harbor/harbor"
       storageClass: ""
-      subPath: ""
+      subPath: "redis"
       accessMode: ReadWriteOnce
       size: 1Gi
   # Define which storage backend is used for registry and chartmuseum to store
