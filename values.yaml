@@ -26,7 +26,7 @@ expose:
   ingress:
     hosts:
       core: harbor.sl
-      notary: harbor.sl
+      notary: notary.harbor.sl
     # set to the type of ingress controller if it has specific requirements.
     # leave as `default` for most ingress controllers.
     # set to `gce` if using the GCE ingress controller
